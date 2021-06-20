@@ -2,6 +2,9 @@
     list-style: none;
     text-align: center;
 }
+.movieCard:hover{
+    opacity: 0.9;
+}
 .movieImage{
     border-radius: 10px;
     background-color: azure;
