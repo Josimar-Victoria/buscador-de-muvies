@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { get } from '../util/htppClien';
 import { Spinner } from '../components/Spinner'
-
+import placeholder from "../placeholder.png";
+import getMoviesImg from '../util/getMoviesImg';
 export function MovieDetails() {
     const [movie, setMovie] = useState(null)
     const [isloading, setIsloading] = useState(true)
@@ -12,7 +13,7 @@ export function MovieDetails() {
 
     useEffect(() => {
         setIsloading(true);
-        get("/movie/" + movieId).then(data => {
+        get(`/movie/${movieId}`).then(data => {
             setMovie(data)
             setIsloading(false)
         })
@@ -24,7 +25,8 @@ export function MovieDetails() {
         )
     }
 
-    const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+    const imageUrl = getMoviesImg(movie.poster_path, 300) 
+
     return (
         <div className={style.datailsContainer}>
             <img className={style.col + " " + style.movieImage} src={imageUrl} alt={movie.title} />
